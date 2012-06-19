@@ -1,9 +1,10 @@
 /*
- * "TheGhost's Ultimate Freeroam"
+ * "Ultimate Freeroam by TheGhost"
  */
  
 /*************************************************************/
 /************************** Utility **************************/
+
 function concat( table, start = 0 )
 {
 	local str = "";

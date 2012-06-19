@@ -1,16 +1,16 @@
 /*
- * "TheGhost's Ultimate Freeroam"
+ * "Ultimate Freeroam by TheGhost"
  */
  
 /*****************************************************************/
 /*********************** Create SQL Tables ***********************/
 
-sql.create_table( "items", [
-	{ name = "index", type = "int(11) unsigned", primary_key = true, auto_increment = true },
-	{ name = "owner", type = "int(11) unsigned" },
-	{ name = "item", type = "int(11) unsigned" },
-	{ name = "value", type = "text" }
-] );
+//sql.create_table( "items", [
+	//{ name = "index", type = "int(11) unsigned", primary_key = true, auto_increment = true },
+	//{ name = "owner", type = "int(11) unsigned" },
+	//{ name = "item", type = "int(11) unsigned" },
+	//{ name = "value", type = "text" }
+//] );
 
 /*****************************************************************/
 /************************** Items List ***************************/
@@ -120,7 +120,7 @@ class CInventory extends CEntity
 	{
 		clearAllItems();
 		
-		local inv = sql.query_assoc( "SELECT * FROM items WHERE owner = " + entity.getUserID( ) + " ORDER BY `index` ASC" );	
+		//local inv = sql.query_assoc( "SELECT * FROM items WHERE owner = " + entity.getUserID( ) + " ORDER BY `index` ASC" );	
 		if( inv )
 		{
 			foreach( item in inv )
@@ -140,7 +140,7 @@ class CInventory extends CEntity
 	{		
 		if( typeof( item ) == "integer" && item >= 0 && item < items.len( ) ) // valid item
 		{
-			local index = sql.query_insertid ( "INSERT INTO items (owner, item, value) VALUES (" + entity.getUserID( ) + "," + item + ",'" + sql.escape( value.tostring( ) ) + "')" );
+			//local index = sql.query_insertid ( "INSERT INTO items (owner, item, value) VALUES (" + entity.getUserID( ) + "," + item + ",'" + sql.escape( value.tostring( ) ) + "')" );
 			if( index )
 			{
 				inventory.push ( CItem ( index.item, index.value, index.owner ) );
@@ -185,11 +185,11 @@ class CInventory extends CEntity
 		else
 			item = slot;	
 		
-		if ( sql.query_affected_rows( "DELETE FROM items WHERE `index` = " + item.getIndex() ) == 1 )
-		{
+		//if ( sql.query_affected_rows( "DELETE FROM items WHERE `index` = " + item.getIndex() ) == 1 )
+		//{
 			delete item;
 			return true;
-		}
+		//}
 		return false;
 	}
 	

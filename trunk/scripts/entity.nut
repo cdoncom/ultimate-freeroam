@@ -1,5 +1,5 @@
 /*
- * "TheGhost's Ultimate Freeroam"
+ * "Ultimate Freeroam by TheGhost"
  */
  
 /*****************************************************************/
