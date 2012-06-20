@@ -298,23 +298,20 @@ addCommand( "assist",
 /*****************************************************************/
 /************************* Report Player *************************/
 
-addCommand( "report",
-	function( player, command, params )
+addCommand ( "report",
+	function ( player, command, params )
 	{
-		if(params.len() >= 2)
+		if ( params.len() >= 2 )
 		{
-			local other = all.find(player, params[0]);
-			if(other)
+			local other = all.find ( player, params[0] );
+			if ( other )
 			{
-				if(all.admins().len() > 0)
+				if ( all.admins ( ).len() > 0 )
 				{
-					player.message( "The administration team has been notified of your report." );
-					foreach( admin in all.admins( ) )
-					{
-						admin.message( "[Player Report] " + player.getName() + " (ID: " + player.getID() + ") (Account: " + player.getUserName() + ") has reported:" );
-						admin.message( "[Player Report] " + other.getName() + " (ID: " + other.getID() + ") (Account: " + other.getUserName() + ") for:" );
-						admin.message( "[Player Report] " + concat(params, 1) );
-					}
+					player.message ( "The administration team has been notified of your report." );
+					admin.message ( "[Player Report] " + player.getName ( ) + " (ID: " + player.getID ( ) + ") (Account: " + player.getUserName ( ) + ") has reported:" );
+					admin.message ( "[Player Report] " + other.getName ( ) + " (ID: " + other.getID ( ) + ") (Account: " + other.getUserName ( ) + ") for:" );
+					admin.message ( "[Player Report] " + concat ( params, 1 ) );
 				}
 				else
 					player.message( "Unfortunately there are no administrators online at this time." );

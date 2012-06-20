@@ -49,6 +49,7 @@ dofile( "scripts/entity.nut" );
 dofile( "scripts/players.nut" );
 dofile( "scripts/inventory.nut" );
 dofile( "scripts/commands.nut" );
+dofile( "scripts/library.nut" );
 
 /*****************************************************************/
 /************************** Initalization **************************/
