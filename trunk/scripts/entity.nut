@@ -19,12 +19,12 @@ class CEntity
 	entityType = entityTypes.unknown;
 	entityID = -1;
 	
-	function getType( )
+	function getType ( )
 	{
 		return entityType;
 	}
 	
-	function getUniqueID( )
+	function getUniqueID ( )
 	{
 		return entityID;
 	}
