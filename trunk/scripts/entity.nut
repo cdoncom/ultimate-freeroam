@@ -6,13 +6,19 @@
 /********************** Entity Helper Class **********************/
 
 entityTypes <-
-{
-	unknown = 0,
-	player = 1,
-	vehicle = 2,
-	inventory = 3,
-	item = 4,
-}
+[
+	unknown,
+	player,
+	vehicle,
+	inventory,
+	item,
+	building,
+	checkpoint,
+	marker,
+	
+	// INCLUDE CUSTOM ENTITY TYPES HERE
+	
+];
 
 class CEntity
 {

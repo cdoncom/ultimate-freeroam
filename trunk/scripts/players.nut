@@ -735,35 +735,3 @@ class CAllPlayers
 
 // CREATE ALL PLAYERS INSTANCE
 all <- CAllPlayers;
-
-// CREATE COUNTER INDEX
-local updateCounter = 0;
-
-// INITIALIZE SERVER TIMER, CYCLES EVERY 5 SECONDS
-local server_timer = timer (
-	function( )
-	{
-		updateCounter = ( updateCounter + 1 ) % 60
-		foreach ( player in players )
-		{
-			if ( isPlayerConnected ( player.getID ( ) ) )
-			{
-				
-				player.update( updateCounter );
-				
-				// EVERY MINUTE
-				if ( updateCounter % 12 == 0 )
-				{
-					if ( !player.isAFK ( ) )
-						player.updateMinute( );
-				}
-				
-				// EVERY THREE MINUTES
-				if ( updateCounter % 36 == 0 )
-					player.save( );
-			}
-		}
-	},
-	5000,
-	-1
-);
