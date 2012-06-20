@@ -14,6 +14,7 @@
 
 /*****************************************************************/
 /************************** Items List ***************************/
+
 items <-
 [
 	{ name = "Health Kit", value = 10 },
@@ -23,9 +24,9 @@ items <-
 	{ name = "Notebook", value = 5 }
 ];
 
-foreach( item in items )
+foreach ( item in items )
 {
-	if( !item.rawin( "type" ) )
+	if ( !item.rawin ( "type" ) )
 		item.type <- false
 }
 
@@ -92,7 +93,7 @@ function getItemInfo ( i )
 	{
 		foreach ( k, v in items )
 		{
-			if ( v.name.tolower() == i.tolower() )
+			if ( v.name.tolower ( ) == i.tolower(  ) )
 				return [ v, k ];
 		}
 		return false;
@@ -102,30 +103,31 @@ function getItemInfo ( i )
 
 /*****************************************************************/
 /*************************** Inventory ***************************/
+
 class CInventory extends CEntity
 {
 	entity = false;
 	inventory = [ ];
 	containerId = false;
 	
-	constructor( entity )
+	constructor ( entity )
 	{
 		this.inventory = [ ];
 		this.entity = entity;
 		entityType = entityTypes.inventory;
-		load();
+		load ( );
 	}
 	
 	function load ( )
 	{
-		clearAllItems();
+		clearAllItems ( );
 		
 		//local inv = sql.query_assoc( "SELECT * FROM items WHERE owner = " + entity.getUserID( ) + " ORDER BY `index` ASC" );	
-		if( inv )
+		if ( inv )
 		{
-			foreach( item in inv )
+			foreach ( item in inv )
 			{
-				if( item.item >= 0 && item.item < items.len( ) )
+				if ( item.item >= 0 && item.item < items.len ( ) )
 				{
 					inventory.push ( CItem ( inv.item, inv.value, inv.owner, inv.index ) );
 				}
@@ -136,12 +138,12 @@ class CInventory extends CEntity
 	}
 	
 	// Gives the Inventory an item
-	function give( item, value, stack = true )
+	function give ( item, value, stack = true )
 	{		
-		if( typeof( item ) == "integer" && item >= 0 && item < items.len( ) ) // valid item
+		if ( typeof ( item ) == "integer" && item >= 0 && item < items.len ( ) ) // valid item
 		{
 			//local index = sql.query_insertid ( "INSERT INTO items (owner, item, value) VALUES (" + entity.getUserID( ) + "," + item + ",'" + sql.escape( value.tostring( ) ) + "')" );
-			if( index )
+			if ( index )
 			{
 				inventory.push ( CItem ( index.item, index.value, index.owner ) );
 				return true;
@@ -151,15 +153,15 @@ class CInventory extends CEntity
 	}
 	
 	// returns a table of all items in the inventory, if given criteria then matching those
-	function get( item = false, value = false )
+	function get ( item = false, value = false )
 	{
-		if( item )
+		if ( item )
 		{
 			local arr = [ ];
-			if( typeof( item ) == "integer" && item >= 0 && item < items.len( ) ) // valid item
-				foreach( i in inventory )
-					if( i.getID() == item && ( value == false || value.tostring( ) == i.getValue() ) )
-						arr.push( i );
+			if ( typeof ( item ) == "integer" && item >= 0 && item < items.len ( ) ) // valid item
+				foreach ( i in inventory )
+					if ( i.getID ( ) == item && ( value == false || value.tostring ( ) == i.getValue ( ) ) )
+						arr.push ( i );
 			return arr;
 		}
 		else
@@ -169,7 +171,7 @@ class CInventory extends CEntity
 	// returns the item on the slot
 	function getOnSlot( slot )
 	{
-		if( typeof( slot ) == "integer" && slot > 0 && slot <= inventory.len( ) )
+		if ( typeof ( slot ) == "integer" && slot > 0 && slot <= inventory.len ( ) )
 		{
 			return inventory[ slot - 1 ];
 		}
@@ -180,7 +182,7 @@ class CInventory extends CEntity
 	function deleteItem ( slot )
 	{		
 		local item;
-		if( typeof( slot ) == "integer" )
+		if ( typeof ( slot ) == "integer" )
 			item = getOnSlot ( slot );
 		else
 			item = slot;	
@@ -196,7 +198,7 @@ class CInventory extends CEntity
 	// Removes all items from the inventory
 	function deleteAllItems ( )
 	{
-		foreach( item in inventory )
+		foreach ( item in inventory )
 			take ( item );
 		return true;
 	}
@@ -204,19 +206,19 @@ class CInventory extends CEntity
 	// Clears out inventory but does not delete item from database
 	function clearAllItems ( )
 	{
-		foreach( item in inventory )
+		foreach ( item in inventory )
 			delete item;
 		return true;
 	}
 	
 	
 	// returns the first found item if the player has any of that kind, false otherwise
-	function has( item, value = false )
+	function has ( item, value = false )
 	{
 		
-		if( typeof( item ) == "integer" && item >= 0 && item < items.len( ) ) // valid item
+		if ( typeof( item ) == "integer" && item >= 0 && item < items.len ( ) ) // valid item
 		{
-			foreach( i in inventory )
+			foreach ( i in inventory )
 			{
 				if ( items[i.item].type = "container" )
 				{
@@ -228,7 +230,7 @@ class CInventory extends CEntity
 					}
 				}
 				
-				if( i.item == item && ( value == false || value.tostring( ) == i.value ) )
+				if ( i.item == item && ( value == false || value.tostring ( ) == i.value ) )
 					return i;
 			}
 		}
