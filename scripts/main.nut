@@ -25,12 +25,22 @@ color <-
 /*****************************************************************/
 /**************************** Config *****************************/
 
-// INITIALIZE CONFIG
+// INITIALIZE SERVER CONFIGURATIONS
 config <-
 {
+
 	globalchat = false,
 	servername = getServerName ( ),
+	starttime = false,
+	servertimer =  false,
+	updatecounter = 0;
+	
+	// CHANGE TO RENAME GAMEMODE
 	gamemode = "Ultimate Freeroam",
+	
+	// SET GAMEMODE TO "MYSQL" OR "EASYINI"
+	database = " ",
+
 }
 
 setGameModeText ( config.gamemode );
@@ -41,15 +51,29 @@ function isGlobalChatEnabled ( )
 	return config.globalchat;
 }
 
+function getServerDatabaseType ( )
+{
+	return config.database;
+}
+
+function getServerStarttime ( )
+{
+	return config.starttime;
+}
+
 /*****************************************************************/
 /*************************** Includes ****************************/
 
-dofile( "scripts/util.nut" );
-dofile( "scripts/entity.nut" );
-dofile( "scripts/players.nut" );
-dofile( "scripts/inventory.nut" );
-dofile( "scripts/commands.nut" );
-dofile( "scripts/library.nut" );
+// INCLUDES
+dofile ( "scripts/util.nut" );
+dofile ( "scripts/entity.nut" );
+dofile ( "scripts/players.nut" );
+dofile ( "scripts/inventory.nut" );
+dofile ( "scripts/commands.nut" );
+dofile ( "scripts/library.nut" );
+
+// LOAD COMMANDS
+dofile ( "scripts/commands/basic.nut" );
 
 /*****************************************************************/
 /************************** Initalization **************************/
@@ -57,14 +81,47 @@ dofile( "scripts/library.nut" );
 addEventHandler ( "scriptInit",
 	function( )
 	{
-		log ( time( ) + "" );
+		if ( getServerDatabaseType ( ) == " " )
+			return false;
+		
+		// SET STARTTIME TO CURRENT TIME
+		config.starttime = time( );
 		
 		// SEED RANDOM GENERATOR
 		srand ( time( ) );
 		
 		// CREATE PLAYER INSTANCE FOR EACH CONNECTED PLAYER
 		foreach ( playerid, name in getPlayers ( ) )
-			players[ playerid ] <- CPlayer ( playerid );		
+			players[ playerid ] <- CPlayer ( playerid );
+
+
+		config.servertimer =  timer (
+			function ( )
+			{
+				config.updatecounter = ( config.updatecounter + 1 ) % 60
+				foreach ( player in players )
+				{
+					if ( isPlayerConnected ( player.getID ( ) ) )
+					{
+						
+						player.update( config.updatecounter );
+						
+						// EVERY MINUTE
+						if ( config.updatecounter % 12 == 0 )
+						{
+							if ( !player.isAFK ( ) )
+								player.updateMinute( );
+						}
+						
+						// EVERY THREE MINUTES
+						if ( config.updatecounter % 36 == 0 )
+							player.save( );
+					}
+				}
+			},
+			5000,
+			-1
+		);			
 	}
 );
 
@@ -95,12 +152,8 @@ addEventHandler( "playerCommand",
 		
 		// OUTPUT PLAYER COMMAND TO ALL ADMINS ON LOG-DUTY
 		foreach( admin in all.admins( ) )
-		{
 			if( admin.isOnLogDuty( ) )
-			{
 				admin.message( getPlayerName( playerid ) + ": " + command );
-			}
-		}
 		
 		// EXECUTE COMMAND HANDLER FUNCTION
 		return executeCommand( player, cmd );
@@ -123,10 +176,7 @@ addEventHandler ( "playerText",
 			return false;
 		}
 		else
-		{
-			
-		}
-		return true;
+			return true;		
 	}
 );
 
