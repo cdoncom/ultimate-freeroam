@@ -5,6 +5,8 @@
 /*****************************************************************/
 /**************************** Accounts ***************************/
 
+accounts <- { };
+
 class CAccount
 {
 	username = false;
@@ -37,6 +39,11 @@ class CAccount
 		return userid;
 	}
 	
+	function getEntity ( )
+	{
+		return entity;
+	}
+	
 	// SET CUSTOM ACCOUNT DATA
 	function setData ( key, value )
 	{
@@ -63,5 +70,54 @@ class CAccount
 function loginPlayer ( player, username )
 {
 	local info = 
-	if ( player.login ( info.userid, username, info )
+	if ( player.login ( info.userid, username, info ) )
+		return true;
+	return false;
 }
+
+function addAccount  ( player, username, password )
+{
+	return true;
+}
+
+function removeAccount ( account )
+{
+	return true;
+}
+
+function setAccountData ( account, key, value )
+{
+	return account.setData ( key, value );
+}
+
+function getAccountData ( account, key )
+{
+	return account.getData ( key );
+}
+
+function setAccountPassword ( account, pass )
+{
+	return true;
+}
+
+function getPlayerAccount ( player )
+{
+	return player.getAccount ( );
+}
+
+function getAccountName ( account )
+{
+	return account.getUsername( );
+}
+
+function getAccountPlayer ( account )
+{
+	return acocunt.getEntity ( );
+}
+
+function getAllAccountData ( account )
+{
+	return account.data;
+}
+
+/*****************************************************************/

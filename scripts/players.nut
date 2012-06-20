@@ -100,6 +100,7 @@ class CPlayer extends CEntity
 			return false;
 			
 		account = CAccount ( username, info.password, userid );
+		accounts <- this.account;
 		
 		this.admin = info.admin;
 		
