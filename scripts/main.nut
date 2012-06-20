@@ -40,7 +40,9 @@ config <-
 	
 	// SET GAMEMODE TO "MYSQL" OR "EASYINI"
 	database = " ",
-
+	
+	// CHANGE TO FALSE TO DISABLE INVENTORY FEATURES
+	inventories = true;
 }
 
 setGameModeText ( config.gamemode );
@@ -61,16 +63,26 @@ function getServerStarttime ( )
 	return config.starttime;
 }
 
+function inventoryEnabled ( )
+{
+	return config.inventories;
+}
+
 /*****************************************************************/
 /*************************** Includes ****************************/
 
 // INCLUDES
+dofile ( "scripts/easyini.nut" );
 dofile ( "scripts/util.nut" );
+dofile ( "scripts/accounts.nut" );
 dofile ( "scripts/entity.nut" );
 dofile ( "scripts/players.nut" );
-dofile ( "scripts/inventory.nut" );
 dofile ( "scripts/commands.nut" );
 dofile ( "scripts/library.nut" );
+
+// LOAD INVENTORIES
+if ( inventoryEnabled ( ) )
+	dofile ( "scripts/inventory.nut" );
 
 // LOAD COMMANDS
 dofile ( "scripts/commands/basic.nut" );

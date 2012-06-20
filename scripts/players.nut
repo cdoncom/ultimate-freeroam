@@ -28,10 +28,8 @@ class CPlayer extends CEntity
 	// PLAYER ID
 	playerid = -1;
 	
-	// ACCOUNT ID
-	userid = -1;
-	// ACCOUNT USERNAME
-	username = false;
+	// ACCOUNT
+	account = false;
 	
 	// PLAYER INVENTORY
 	inventory = false;
@@ -100,9 +98,9 @@ class CPlayer extends CEntity
 			
 		if ( info != "table" && infor != "array" )
 			return false;
+			
+		account = CAccount ( username, info.password, userid );
 		
-		this.userid = userid;
-		this.username = username;
 		this.admin = info.admin;
 		
 		return true;
