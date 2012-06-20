@@ -8,6 +8,7 @@
 entityTypes <-
 [
 	unknown,
+	account,
 	player,
 	vehicle,
 	inventory,
