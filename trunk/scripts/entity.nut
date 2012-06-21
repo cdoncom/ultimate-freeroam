@@ -13,6 +13,7 @@ entityTypes <-
 	vehicle,
 	inventory,
 	item,
+	usergroup,
 	building,
 	checkpoint,
 	marker,

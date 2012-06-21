@@ -79,6 +79,7 @@ dofile ( "scripts/entity.nut" );
 dofile ( "scripts/players.nut" );
 dofile ( "scripts/commands.nut" );
 dofile ( "scripts/library.nut" );
+dofile ( "scripts/usergroups.nut" );
 
 // LOAD INVENTORIES
 if ( inventoryEnabled ( ) )
