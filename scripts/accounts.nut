@@ -7,7 +7,7 @@
 
 accounts <- { };
 
-class CAccount
+class CAccount extends CEntity
 {
 	username = false;
 	password = false;
