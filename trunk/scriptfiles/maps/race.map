@@ -1,0 +1,18 @@
+<map name='race' gamemode='race' >
+	<!-- Startline where the race official starts -->
+	<startline>
+		<spawnpoint/>
+	</startline>
+	
+	<!-- Objective throughout the race. i.e checkpoints to pass through -->
+	<objective >
+		<checkpoint id='4' />
+		<blip />
+	</objective >
+	
+	<!-- The finish line checkpoint -->
+	<finishline>
+		<checkpoint id='5' />
+		<blip />
+	</finishline>
+</map>

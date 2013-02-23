@@ -1,0 +1,15 @@
+<chatserver>
+	<default>public</default>
+	<channel name='admin' >
+		<ispublic>1</ispublic>
+		<password>defaultpass</password>
+		<joinmessage>Welcome to the Admin channel!</joinmessage>
+		<color>14</color>
+	</channel>
+	<channel name='public' default='true' >
+		<ispublic>0</ispublic>
+		<password></password>
+		<joinmessage>Welcome to the Default channel!</joinmessage>
+		<color>13</color>
+	</channel>
+</chatserver>
