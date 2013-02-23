@@ -62,8 +62,9 @@
 		local toload = [ ];
 	
 		local xfile = xml ( SERVER.getconfig ( ).chatfile );
-		xfile.nodeFirstChild ( );
-		while ( true )
+		local root = xfile.getRootNode ( );
+		
+		/*while ( true )
 		{
 			local nodename = xfile.nodeName ( );
 			if ( nodename == "channel" )
@@ -93,7 +94,7 @@
 			
 			if ( !xfile.nodeNext ( ) )
 				break;
-		}
+		}*/
 		
 		foreach ( id, channel in toload )
 			createchannel ( channel.name, channel.ispub, channel.pass, channel.jmsg, channel.color );

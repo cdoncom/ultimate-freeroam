@@ -42,7 +42,7 @@ class Vehicle extends Element
 	{
 		this.model = data.model;
 		this.type = "vehicle";
-		this.id = createVehicle ( data.model, data.x, data.y, data.z, data.rx, data.ry, data.rz, data.color[0], data.color[1], data.color[2], data.color[3] );
+		this.id = createVehicle ( data.model, data.x, data.y, data.z, data.rx, data.ry, data.rz );
 		if ( data.lock == true )
 			lock ( );
 		this.inventory = Inventory ( this );
@@ -51,38 +51,38 @@ class Vehicle extends Element
 	function lock ( )
 	{
 		lock = true;
-		setVehicleLocked ( this.id, 2 );
+		//setVehicleLocked ( this.id, 2 );
 	}
 	
 	function unlock ( )
 	{
 		lock = false;
-		setVehicleLocked ( this.id, 0 );
+		//setVehicleLocked ( this.id, 0 );
 	}
 	
 	function gethealth ( )
 	{
-		return getVehicleHealth ( this.id );
+		//return getVehicleHealth ( this.id );
 	}
 	
 	function sethealth ( val )
 	{
-		return setVehicleHealth ( this.id, val.tointeger ( ) );
+		//return setVehicleHealth ( this.id, val.tointeger ( ) );
 	}
 	
-	function soundhorn ( time )
+	function soundhorn ( )
 	{
-		return soundVehicleHorn ( this.id, time );
+		return setVehicleHornState ( this.id, true );
 	}
 	
 	function lightson ( )
 	{
-		return setVehicleLights ( this.id, true );
+		//return setVehicleLights ( this.id, true );
 	}
 	
 	function lightsoff ( )
 	{
-		return setVehicleLights ( this.id, false );
+		//return setVehicleLights ( this.id, false );
 	}
 	
 	function getinventory ( )
@@ -92,7 +92,7 @@ class Vehicle extends Element
 	
 	function getposition ( )
 	{
-		return getVehicleCoordinates ( this.id );
+		return getVehiclePosition ( this.id );
 	}
 	
 	function getdriver ( )
@@ -122,9 +122,9 @@ class Vehicle extends Element
 		return model;
 	}
 	
-	function setcolor ( a, b, c, d )
+	function setcolor ( a, b, c, d, e, f )
 	{
-		return setVehicleColor ( this.id, a, b, c, d );
+		return setVehicleColour ( this.id, a, b, c, d, e, f );
 	}
 	
 };

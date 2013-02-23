@@ -134,7 +134,7 @@ class Player extends Element
 		if ( typeof ( state ) != "bool" )
 			return false;
 		
-		togglePlayerFrozen ( this.id, state );
+		//togglePlayerFrozen ( this.id, state );
 		this.freeze = state;
 		return true;
 	}
@@ -174,13 +174,13 @@ class Player extends Element
 			spawnpoint = SERVER.getworld ( ).getmaphandler ( ).getmap ( "assult" ).randomspawnpoint ( );
 			
 		local pos = spawnpoint.getposition ( );
-		setPlayerSpawnLocation ( this.id, pos[0], pos[1], pos[2], spawnpoint.getrotation( ) );
+		setPlayerPosition ( this.id, pos[0], pos[1], pos[2], spawnpoint.getrotation( ) );
 		return true;
 	}
 	
 	function spawn ( x, y, z, rot )
 	{
-		setPlayerSpawnLocation ( this.id, x.tofloat ( ), y.tofloat ( ), z.tofloat ( ), rot.tofloat ( ) );
+		setPlayerPosition ( this.id, x.tofloat ( ), y.tofloat ( ), z.tofloat ( ), rot.tofloat ( ) );
 		return true;
 	}
 	
@@ -209,13 +209,12 @@ class Player extends Element
 	
 	function getposition ( )
 	{
-		return getPlayerCoordinates ( this.id );
+		return getPlayerPosition ( this.id );
 	}
 	
 	function getrotation ( )
 	{
-		return getPlayerHeading ( this.id );
-	}
+		return getPlayerRotation ( this.id );
 	
 	function entervehicle ( vehicle )
 	{
@@ -267,7 +266,7 @@ class Player extends Element
 	
 	function setposition ( x, y, z )
 	{
-		return setPlayerCoordinates ( this.id, x, y, z );
+		return setPlayerPosition ( this.id, x, y, z );
 	}
 	
 	function isloggedin ( )
@@ -285,7 +284,7 @@ class Player extends Element
 	
 	function getip ( )
 	{
-		return getPlayerIp ( this.id );
+		//return getPlayerIp ( this.id );
 	}
 	
 	function getaccount ( )
@@ -305,27 +304,27 @@ class Player extends Element
 	
 	function setarmour ( var )
 	{
-		return setPlayerArmour ( this.id, var );
+		//return setPlayerArmour ( this.id, var );
 	}
 	
 	function getarmour ( )
 	{
-		return getPlayerArmour ( this.id );
+		//return getPlayerArmour ( this.id );
 	}
 	
 	function givemoney ( amount )
 	{
-		return givePlayerMoney ( this.id, amount.tointeger ( ) );
+		//return givePlayerMoney ( this.id, amount.tointeger ( ) );
 	}
 	
 	function initplayeracs ( )
 	{
-		setPlayerInvincible ( this.id, true );
+		//setPlayerInvincible ( this.id, true );
 	}
 	
 	function exitplayeracs ( )
 	{
-		setPlayerInvincible ( this.id, false );
+		//setPlayerInvincible ( this.id, false );
 	}
 	
 	function adminmode ( state )
