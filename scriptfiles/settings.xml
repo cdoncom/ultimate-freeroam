@@ -1,0 +1,36 @@
+<settings>
+	<!-- Server gamemode: 0 = freeroam, 1 = race, 2 = roleplay, 3 = team deathmatch, 4 = assault -->
+	<gamemode>0</gamemode>
+	
+	<!-- Account storage: 0 = MYSQL, 1 = XML, 2 = EASYINI, 3 = SQLite -->
+	<accounts type='0' >
+		<!-- Database connection, only loaded when account node type is equal to 0:
+			type -> 0 = Custom, 1 = phpBB, 2 = vBulletin, 3 = IPB
+			ip -> IP address of the database
+			user -> MYSQL connection username
+			pass -> MYSQL conneciton password
+			db -> database the connetion will reach
+			usertable -> table where user accounts are stored
+			grouptable -> table where usergroups/teams are stored
+			statstable -> player stats, not really in use yet though
+		-->
+		<database type='0' ip='localhost' user='root' pass='GhostAD2008' db='ghostgaming' usertable='users' grouptable='usergroups' statstable='userstats' />
+		
+		<!-- This node is only loaded when account node type is equal to 1. Load the xml file with accounts. -->
+		<xmlfile >accounts.xml</xmlfile>
+	</accounts>
+		
+	<!-- Chatserver settings file -->
+	<chatfile>chatserver.xml</chatfile>
+	
+	<!-- ACS (Admin Control System) logfile -->
+	<acs>acs.log</acs>
+	
+	<!-- List of maps the server will load:
+		start -> true = server will start the map and load/create the elements, false = server will load the map but not start the map or load/create the elements.
+	-->
+	<maps>
+		<map start='false' >race.map</map>
+	</maps>
+	
+</settings>

@@ -1,0 +1,11 @@
+Weather List
+	1 = Extra Sunny
+	2 = Sunny
+	3 = Sunny Windy
+	4 = Cloudy
+	5 = Raining
+	6 = Drizzle
+	7 = Foggy
+	8 = Thunderstorm
+	9 = Extra Sunny 2
+	10 = Sunny and Windy 2
