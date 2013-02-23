@@ -134,7 +134,7 @@ addEventHandler ( "scriptInit",
 			},
 			5000,
 			-1
-		);			
+		);		
 	}
 );
 
