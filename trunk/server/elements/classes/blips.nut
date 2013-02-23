@@ -38,7 +38,7 @@ class Blip extends Element
 		this.pos[0] = data.x;
 		this.pos[1] = data.y;
 		this.pos[2] = data.z;
-		this.id = createBlip ( data.model, data.x, data.y, data.z );
+		this.id = createBlip ( data.x, data.y, data.library, data.icon );
 		this.type = "blip";
 	}
 	

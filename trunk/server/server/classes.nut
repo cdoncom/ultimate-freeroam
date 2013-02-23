@@ -268,65 +268,60 @@ class Server
 	function loadconfig ( )
 	{
 		local xfile = xml ( "settings.xml" );
+		local root = file.getRootNode ( );
 		
-		// Load gamemode settigns
-		xfile.nodeFind ( "gamemode" );
-		config.gamemode <- xfile.nodeContent (  );
-		xfile.nodeParent ( );
+		// Load gamemode settings
+		local g_node = xfile.nodeFind ( root, "gamemode" );
+		config.gamemode <- xfile.getgetNodeContent ( g_node );
 		
 		// Load chatserver settings filename
-		xfile.nodeFind ( "accounts" );
-		config.acctype <- xfile.nodeContent (  ).tointeger ( );
+		local a_node = xfile.nodeFind ( root, "accounts" );
+		config.acctype <- xfile.getNodeContent ( a_node ).tointeger ( );
 		if ( config.acctype == 0 )
 		{
 			// Load database connection settings
-			xfile.nodeFind ( "database" );
-			config.dbtype <- xfile.nodeAttribute ( "type" );
-			config.ip <- xfile.nodeAttribute ( "ip" );
-			config.user <- xfile.nodeAttribute ( "user" );
-			config.pass <- xfile.nodeAttribute ( "pass" );
-			config.db <- xfile.nodeAttribute ( "db" );
-			config.usertable <- xfile.nodeAttribute ( "usertable" );
-			config.grouptable <- xfile.nodeAttribute ( "grouptable" );
-			config.statstable <- xfile.nodeAttribute ( "statstable" );
-			xfile.nodeParent ( );
+			local d_node = xfile.nodeFind ( a_node, "database" );
+			config.dbtype <- xfile.getNodeAttribute ( d_node, "type" );
+			config.ip <- xfile.getNodeAttribute ( d_node, "ip" );
+			config.user <- xfile.getNodeAttribute ( d_node, "user" );
+			config.pass <- xfile.getNodeAttribute ( d_node, "pass" );
+			config.db <- xfile.getNodeAttribute ( d_node, "db" );
+			config.usertable <- xfile.getNodeAttribute ( d_node, "usertable" );
+			config.grouptable <- xfile.getNodeAttribute ( d_node, "grouptable" );
+			config.statstable <- xfile.getNodeAttribute ( d_node, "statstable" );
 		}
 		else if ( config.acctype == 1 )
 		{
-			xfile.nodeFind ( "xmlfile" );
-			config.xmlfile <- xfile.nodeContent ( );
-			xfile.nodeParent ( );
+			local x_node = xfile.nodeFind ( a_node, "xmlfile" );
+			config.xmlfile <- xfile.getNodeContent ( x_node );
 		}
-		xfile.nodeParent ( );
 		
 		// Load chatserver settings filename
-		xfile.nodeFind ( "chatfile" );
-		config.chatfile <- xfile.nodeContent (  );
-		xfile.nodeParent ( );
+		local c_node = xfile.nodeFind ( root, "chatfile" );
+		config.chatfile <- xfile.getNodeContent ( c_node );
 		
 		// Load acs settings filename
-		xfile.nodeFind ( "acs" );
-		config.acs <- xfile.nodeContent (  );
-		xfile.nodeParent ( );
+		local acs_node = xfile.nodeFind ( root, "acs" );
+		config.acs <- xfile.getNodeContent ( acs_node );
 		
 		// Load map files
 		config.maps <- [ ];
-		xfile.nodeFind ( "maps" );
-		xfile.nodeFirstChild ( );
-		while ( true )
+		local m_node = xfile.nodeFind ( root, "maps" );
+		
+		/*while ( true )
 		{
 			if ( xfile.nodeName ( ) == "map" )
 			{
 				local data = {
-					state = xfile.nodeAttribute ( "start" ),
-					name = xfile.nodeContent ( ).tostring ( )
+					state = xfile.getNodeAttribute ( "start" ),
+					name = xfile.getNodeContent ( ).tostring ( )
 				};
 				
 				config.maps.push ( data );
 				if ( !xfile.nodeNext ( ) )
 					break;
 			}
-		}
+		}*/
 
 		return config;
 	}
